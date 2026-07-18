@@ -1,0 +1,11 @@
+/* ════════════════════════════════════════════════════════════════
+   Boss Bar Lounge — Design System entry point (import order).
+   NOTE: token CSS files are pulled on demand from the Claude Design
+   project (019dea4a…). For staged builds, the producer inlines the
+   token values listed in ./readme.md into :root.
+   ════════════════════════════════════════════════════════════════ */
+@import url("tokens/fonts.css");
+@import url("tokens/colors.css");
+@import url("tokens/typography.css");
+@import url("tokens/spacing.css");
+@import url("tokens/effects.css");

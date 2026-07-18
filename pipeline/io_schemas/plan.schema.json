@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "plan.schema.json",
+  "title": "Design Plan",
+  "description": "planner → producer. 섹션 단위 실행 기획안 + 컴포넌트/토큰 지정.",
+  "type": "object",
+  "required": ["project_id", "logline", "design_system", "sections", "responsive_rules"],
+  "properties": {
+    "project_id": { "type": "string" },
+    "logline": { "type": "string", "description": "이 산출물의 한 줄 컨셉" },
+    "borrowed_devices": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "collection에서 차용할 연출 3가지",
+      "maxItems": 5
+    },
+    "design_system": { "type": "string", "description": "레지스트리 키" },
+    "page_map": {
+      "type": "array",
+      "description": "멀티페이지(output_type=B)일 때 페이지 목록",
+      "items": {
+        "type": "object",
+        "required": ["path", "purpose"],
+        "properties": {
+          "path": { "type": "string", "description": "예: index.html, pricing.html" },
+          "purpose": { "type": "string" },
+          "sections": { "type": "array", "items": { "type": "string" }, "description": "이 페이지가 포함할 section id" }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "intent", "layout", "copy"],
+        "properties": {
+          "id": { "type": "string" },
+          "intent": { "type": "string", "description": "이 섹션의 역할(후킹/설득/전환 등)" },
+          "layout": { "type": "string", "description": "레이아웃 설명(풀블리드 히어로/2컬럼/카드그리드 등)" },
+          "components": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "사용할 디자인시스템 컴포넌트 또는 패턴명"
+          },
+          "tokens": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "이 섹션이 사용할 핵심 토큰(색/타입/스페이싱/글로우)"
+          },
+          "copy": {
+            "type": "object",
+            "properties": {
+              "eyebrow": { "type": "string" },
+              "headline": { "type": "string" },
+              "tagline": { "type": "string" },
+              "body": { "type": "string" },
+              "cta": { "type": "string" }
+            }
+          },
+          "assets": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "필요 이미지/영상(경로 또는 플레이스홀더 설명)"
+          }
+        }
+      }
+    },
+    "responsive_rules": {
+      "type": "object",
+      "description": "뷰포트별 레이아웃 규칙",
+      "properties": {
+        "desktop": { "type": "string" },
+        "mobile": { "type": "string" }
+      }
+    },
+    "adherence_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "반드시 지킬 브랜드 규칙(예: 0px radius, 대문자 display, 골드 글로우만)"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   ELEVATION & MOTION — Apple design language
+   Exactly ONE drop-shadow in the whole system, reserved for product imagery.
+   UI elevation comes from surface-color change and backdrop blur — never
+   shadows on cards, buttons, or text.
+   ========================================================================== */
+
+:root {
+  /* The single shadow — product renders resting on a surface, and nothing else */
+  --shadow-product: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+
+  /* Borders that read as rings, not hard lines */
+  --border-hairline: 1px solid var(--color-hairline-alpha); /* utility cards, sub-nav */
+  --border-ring-soft: 3px solid var(--color-divider-soft);  /* Pearl button ring */
+
+  /* Frosted glass — sub-nav & floating sticky bar */
+  --blur-frosted: saturate(180%) blur(20px); /* @kind other */
+  --frosted-fill: rgba(245, 245, 247, 0.8); /* parchment @ 80% */
+
+  /* Motion — the system-wide press micro-interaction */
+  --press-scale: 0.95; /* @kind other */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --duration-press: 120ms; /* @kind other */
+}

@@ -1,0 +1,99 @@
+/* ==========================================================================
+   TYPOGRAPHY — Apple design language
+   SF Pro Display (>=19px headlines) + SF Pro Text (body/UI). On Apple platforms
+   the system-ui stack resolves to the real SF Pro; Inter is the web fallback.
+   Weight ladder is 300 / 400 / 600 / 700 — weight 500 is deliberately absent.
+   ========================================================================== */
+
+:root {
+  /* --- Families ------------------------------------------------------- */
+  --font-display: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  --font-text: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+
+  /* --- Weights (500 intentionally omitted) ---------------------------- */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* --- Type scale: size / line-height / letter-spacing ---------------- */
+  /* Hero headline — the signature "Apple tight" tracking */
+  --type-hero-display-size: 56px;
+  --type-hero-display-lh: 1.07;
+  --type-hero-display-ls: -0.28px;
+
+  /* Tile headlines atop every product tile */
+  --type-display-lg-size: 40px;
+  --type-display-lg-lh: 1.10;
+  --type-display-lg-ls: 0px;
+
+  /* Section heads */
+  --type-display-md-size: 34px;
+  --type-display-md-lh: 1.47;
+  --type-display-md-ls: -0.374px;
+
+  /* Product tile subcopy */
+  --type-lead-size: 28px;
+  --type-lead-lh: 1.14;
+  --type-lead-ls: 0.196px;
+
+  /* Environment-page lead paragraphs (rare weight 300) */
+  --type-lead-airy-size: 24px;
+  --type-lead-airy-lh: 1.5;
+  --type-lead-airy-ls: 0px;
+
+  /* Sub-tile tagline; sub-nav category name */
+  --type-tagline-size: 21px;
+  --type-tagline-lh: 1.19;
+  --type-tagline-ls: 0.231px;
+
+  /* Inline strong emphasis */
+  --type-body-strong-size: 17px;
+  --type-body-strong-lh: 1.24;
+  --type-body-strong-ls: -0.374px;
+
+  /* Default paragraph — 17px, not 16px */
+  --type-body-size: 17px;
+  --type-body-lh: 1.47;
+  --type-body-ls: -0.374px;
+
+  /* Footer / store utility link lists — relaxed leading */
+  --type-dense-link-size: 17px;
+  --type-dense-link-lh: 2.41;
+  --type-dense-link-ls: 0px;
+
+  /* Secondary captions, button text */
+  --type-caption-size: 14px;
+  --type-caption-lh: 1.43;
+  --type-caption-ls: -0.224px;
+
+  /* Emphasized captions */
+  --type-caption-strong-size: 14px;
+  --type-caption-strong-lh: 1.29;
+  --type-caption-strong-ls: -0.224px;
+
+  /* Store hero CTAs (rare weight 300) */
+  --type-button-large-size: 18px;
+  --type-button-large-lh: 1.0;
+  --type-button-large-ls: 0px;
+
+  /* Utility / nav button labels */
+  --type-button-utility-size: 14px;
+  --type-button-utility-lh: 1.29;
+  --type-button-utility-ls: -0.224px;
+
+  /* Fine-print, footer body */
+  --type-fine-print-size: 12px;
+  --type-fine-print-lh: 1.0;
+  --type-fine-print-ls: -0.12px;
+
+  /* Micro legal disclaimers */
+  --type-micro-legal-size: 10px;
+  --type-micro-legal-lh: 1.3;
+  --type-micro-legal-ls: -0.08px;
+
+  /* Global nav menu items */
+  --type-nav-link-size: 12px;
+  --type-nav-link-lh: 1.0;
+  --type-nav-link-ls: -0.12px;
+}

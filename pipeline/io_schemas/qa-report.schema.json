@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "qa-report.schema.json",
+  "title": "QA Report",
+  "description": "qa → orchestrator. 검수 결과 + 수정 지시.",
+  "type": "object",
+  "required": ["project_id", "stage", "gate", "verdict", "checks"],
+  "properties": {
+    "project_id": { "type": "string" },
+    "stage": {
+      "type": "string",
+      "description": "검수 대상 단계",
+      "enum": ["brief", "collection", "plan", "production"]
+    },
+    "gate": {
+      "type": "string",
+      "enum": ["understanding", "quality"],
+      "description": "understanding=착수 전 이해 게이트, quality=산출 후 품질 게이트"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "FAIL", "CONDITIONAL"]
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "result"],
+        "properties": {
+          "name": { "type": "string" },
+          "result": { "type": "string", "enum": ["pass", "fail", "warn"] },
+          "evidence": { "type": "string", "description": "근거(스크린샷 경로/로그/인용)" }
+        }
+      }
+    },
+    "fix_instructions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "FAIL/CONDITIONAL 시 구체 수정 지시(담당 팀이 그대로 실행 가능해야 함)"
+    },
+    "reviewer_notes": { "type": "string" }
+  }
+}

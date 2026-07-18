@@ -1,0 +1,5 @@
+# AI 디자인팀 파이프라인 의존성
+# 핵심 검사(adherence.py / qa.py / preview_server.py)는 표준 라이브러리만으로 동작합니다.
+# 스크린샷(screenshot.py)만 선택적으로 Playwright가 필요합니다.
+
+playwright>=1.40   ; 설치 후: python -m playwright install chromium

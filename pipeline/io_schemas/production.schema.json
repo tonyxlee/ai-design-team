@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "production.schema.json",
+  "title": "Production Manifest",
+  "description": "producer → qa. 생성된 산출물 + 자가검사 결과.",
+  "type": "object",
+  "required": ["project_id", "artifacts", "adherence", "tech_checks"],
+  "properties": {
+    "project_id": { "type": "string" },
+    "design_system": { "type": "string" },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "type"],
+        "properties": {
+          "path": { "type": "string", "description": "산출 파일 경로(workspace 기준)" },
+          "type": { "type": "string", "enum": ["html", "png", "jpg", "svg", "css"] },
+          "viewport": { "type": "string" },
+          "screenshot": { "type": "string", "description": "검증 스크린샷 경로" }
+        }
+      }
+    },
+    "adherence": {
+      "type": "object",
+      "required": ["pass"],
+      "properties": {
+        "pass": { "type": "boolean", "description": "디자인시스템 준수 검사 통과 여부" },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule": { "type": "string" },
+              "where": { "type": "string" },
+              "detail": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "tech_checks": {
+      "type": "object",
+      "properties": {
+        "console_errors": { "type": "integer", "minimum": 0 },
+        "broken_links": { "type": "array", "items": { "type": "string" } },
+        "missing_assets": { "type": "array", "items": { "type": "string" } },
+        "responsive_ok": { "type": "boolean" }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

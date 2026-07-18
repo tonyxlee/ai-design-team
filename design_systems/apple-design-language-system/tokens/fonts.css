@@ -1,0 +1,15 @@
+/* ==========================================================================
+   FONTS — Apple design language
+   SF Pro is Apple's PROPRIETARY system font and cannot be shipped as a
+   webfont. On macOS / iOS / Safari the system-ui + -apple-system stack in
+   tokens/typography.css resolves to the REAL SF Pro Display / Text.
+   Off-Apple platforms fall back to Inter (loaded below) — the closest
+   open-source match. ss03 approximates SF Pro's rounded "a".
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+/* Apply Inter's stylistic set globally so the fallback reads closest to SF Pro */
+:root {
+  --font-feature-apple: "ss03" 1;
+}

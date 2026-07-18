@@ -1,0 +1,15 @@
+/* ==========================================================================
+   SHAPES — Apple design language
+   Radius grammars don't mix: sm=compact utility, lg=utility cards,
+   pill=actions, md=the rare Pearl button. Tiles are never rounded.
+   ========================================================================== */
+
+:root {
+  --radius-none: 0px;      /* full-bleed product tiles */
+  --radius-xs: 5px;        /* inline chip links (rare) */
+  --radius-sm: 8px;        /* dark utility buttons, inline card imagery */
+  --radius-md: 11px;       /* Pearl button capsules */
+  --radius-lg: 18px;       /* store / accessories utility cards */
+  --radius-pill: 9999px;   /* primary CTAs, chips, search — the signature pill */
+  --radius-full: 9999px;   /* circular control chips over photography */
+}

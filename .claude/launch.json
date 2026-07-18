@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "design-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["pipeline/preview_server.py", "gangnam-dalto-landing", "8830"],
+      "port": 8830
+    }
+  ]
+}

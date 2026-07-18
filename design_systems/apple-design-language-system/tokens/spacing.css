@@ -1,0 +1,21 @@
+/* ==========================================================================
+   SPACING — Apple design language
+   Base unit 8px. Sub-base values (2,4,5,6,7) for tight typographic tuning;
+   structural layout snaps to 8/12/16/20/24. Section padding is 80px.
+   ========================================================================== */
+
+:root {
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 17px;     /* mirrors the 17px body rhythm */
+  --space-lg: 24px;     /* utility card padding */
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 80px; /* vertical padding inside a product tile */
+
+  /* --- Layout containers --------------------------------------------- */
+  --container-text: 980px;   /* text-heavy sections (environment) */
+  --container-grid: 1440px;  /* product / utility grids (store, accessories) */
+  --grid-gutter: 24px;       /* 20–24px between utility-grid cards */
+}

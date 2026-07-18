@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "brief.schema.json",
+  "title": "Design Brief",
+  "description": "orchestrator → 전체. 사용자 요구사항을 정형화한 명세.",
+  "type": "object",
+  "required": ["project_id", "brand", "output_type", "goal", "key_message", "constraints"],
+  "properties": {
+    "project_id": { "type": "string", "description": "YYYYMMDD-slug 형식" },
+    "created_at": { "type": "string" },
+    "brand": {
+      "type": "object",
+      "required": ["name", "design_system"],
+      "properties": {
+        "name": { "type": "string" },
+        "design_system": {
+          "type": "string",
+          "description": "design_systems/ 레지스트리 키",
+          "enum": ["apple-design-language-system", "bmw-m", "boss-bar-lounge"]
+        },
+        "voice_notes": { "type": "string", "description": "브랜드 보이스 추가 지침(선택)" }
+      }
+    },
+    "output_type": {
+      "type": "string",
+      "description": "A=웹 랜딩/원페이지, B=멀티페이지 사이트, C=히어로/섹션, D=소셜/광고 그래픽",
+      "enum": ["A_landing", "B_multipage", "C_section", "D_graphic"]
+    },
+    "goal": { "type": "string", "description": "이 산출물이 달성해야 할 목표(전환/예약/인지 등)" },
+    "audience": { "type": "string" },
+    "key_message": { "type": "string", "description": "한 줄 핵심 메시지" },
+    "must_include": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "반드시 반영할 요소(가격/CTA/연락처/특정 섹션 등)"
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["lang", "viewports"],
+      "properties": {
+        "lang": { "type": "string", "default": "ko" },
+        "viewports": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["desktop", "mobile", "tablet", "square", "story", "banner"] }
+        },
+        "length": { "type": "string", "description": "예: 원페이지, 6섹션, 1080x1080 등" },
+        "deadline": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "최종 산출 파일 목록(예: final.html, hero-1080.png)"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 로컬 전용 원본 익스포트(대용량 zip·번들) — 학습 레퍼런스, 레포에는 미포함
+samples/
+
+# 작업 산출물(프로젝트별) — 필요 시 개별 커밋
+pipeline/workspace/
+
+# OS
+.DS_Store
+Thumbs.db
