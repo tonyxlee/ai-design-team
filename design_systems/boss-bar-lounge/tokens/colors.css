@@ -1,0 +1,55 @@
+/* ── COLORS ─────────────────────────────────────────────────────────
+   A near-black nightclub canvas lit by warm gold. White text sits on
+   four dark surface tiers; gold and a softer champagne-tan ("crimson"
+   in the source) carry every accent. One cool neon-cyan spark is held
+   in reserve for rare highlights. Pixel-extracted from the live site.
+   ──────────────────────────────────────────────────────────────────── */
+:root {
+  /* — Surfaces (dark → less dark): bg is the page, bg2–bg4 stack cards — */
+  --bbl-bg:        #080808;
+  --bbl-bg-2:      #0e0e0e;
+  --bbl-bg-3:      #141414;
+  --bbl-bg-4:      #1a1a1a;
+
+  /* — Text on dark — */
+  --bbl-text:      #ffffff;
+  --bbl-text-sub:  rgba(255, 255, 255, 0.82);
+  --bbl-text-dim:  rgba(255, 255, 255, 0.48);
+  --bbl-text-faint:rgba(255, 255, 255, 0.10);  /* ghost numerals */
+
+  /* — Gold (primary accent) — */
+  --bbl-gold:        #E0B36A;
+  --bbl-gold-light:  #F8D19C;
+  --bbl-gold-deep:   #A07838;
+  --bbl-gold-bg:     rgba(224, 179, 106, 0.08);
+  --bbl-gold-border: rgba(224, 179, 106, 0.30);
+
+  /* — Champagne tan (secondary accent; "crimson" in source) — */
+  --bbl-tan:        #C99A5E;
+  --bbl-tan-light:  #E7BD8B;
+  --bbl-tan-bg:     rgba(201, 154, 94, 0.10);
+  --bbl-tan-border: rgba(201, 154, 94, 0.38);
+
+  /* — Neon cyan (rare cool spark) — */
+  --bbl-neon:     #54FCFF;
+  --bbl-neon-bg:  rgba(84, 252, 255, 0.08);
+
+  /* — Signature gold gradient (buttons, banners, eyebrow lines) — */
+  --bbl-grad-gold:  linear-gradient(135deg, #C99A5E 0%, #A07838 50%, #E0B36A 100%); /* @kind color */
+  --bbl-grad-gold-text: linear-gradient(135deg, #E0B36A 0%, #F8D19C 40%, #A07838 100%); /* @kind color */
+
+  /* — Hairlines — */
+  --bbl-border:        rgba(255, 255, 255, 0.10);
+  --bbl-border-strong: rgba(255, 255, 255, 0.18);
+
+  /* — On-gold text (for use atop gold gradient surfaces) — */
+  --bbl-on-gold: #1A0F04;
+
+  /* ── Semantic aliases — prefer these in components ── */
+  --bbl-surface:        var(--bbl-bg);
+  --bbl-surface-raised: var(--bbl-bg-3);
+  --bbl-surface-high:   var(--bbl-bg-4);
+  --bbl-accent:         var(--bbl-gold);
+  --bbl-accent-2:       var(--bbl-tan);
+  --bbl-link:           var(--bbl-gold-light);
+}

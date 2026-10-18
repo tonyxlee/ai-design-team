@@ -1,0 +1,41 @@
+/* ════════════════════════════════════════════════════════════════
+   kinetic-hero — boss-bar-lounge 토큰 치환본 (자체 저작)
+   syahril 분석(analysis.md)의 패턴을 BBL 디자인 언어로 재구성:
+   Inter 900 → Cormorant Garamond 700(세리프 디스플레이),
+   white shimmer → 골드 그라데이션 시머(--bbl-grad-gold-text).
+   사용: 히어로 h1의 강조 행(em)에 .bbl-shiny-gold, 전체 h1에 .bbl-kinetic.
+   prefers-reduced-motion에서 시머 정지(그라데이션은 정적 유지).
+   ════════════════════════════════════════════════════════════════ */
+
+.bbl-kinetic {
+  font-family: var(--bbl-font-display);
+  font-weight: 700;
+  line-height: 0.92;              /* 세리프는 0.85면 디센더 잘림 — 0.9~0.95 */
+  letter-spacing: -0.015em;       /* 세리프는 -0.05em이 과함 */
+  text-wrap: balance;
+}
+
+/* 골드 시머 텍스트 — 원 효과의 text-shiny를 BBL 골드로 */
+.bbl-shiny-gold {
+  background: linear-gradient(110deg,
+    var(--bbl-gold-deep) 0%,
+    var(--bbl-gold) 28%,
+    var(--bbl-gold-light) 50%,
+    var(--bbl-gold) 72%,
+    var(--bbl-gold-deep) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: var(--bbl-glow-gold-sm);           /* 글로우는 DS 토큰으로 */
+  animation: bbl-text-shine 5s linear infinite;
+}
+@keyframes bbl-text-shine {
+  0%   { background-position: 200% center; }
+  100% { background-position: -50% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bbl-shiny-gold { animation: none; background-position: 50% center; }
+}

@@ -1,0 +1,45 @@
+/* ============================================================
+   COLORS — BMW M
+   Near-pure black canvas, white type, M tricolor as brand-only accent.
+   Never inline hex in components — always reference these tokens.
+   ============================================================ */
+
+:root {
+  /* --- Brand & Accent --- */
+  --color-primary: #ffffff;        /* primary type + CTA (button label/outline) */
+  --color-m-blue-light: #0066b1;   /* M tricolor stop 1 */
+  --color-m-blue-dark: #1c69d4;    /* M tricolor stop 2 (== heritage BMW blue) */
+  --color-bmw-blue: #1c69d4;       /* heritage corporate blue */
+  --color-m-red: #e22718;          /* M tricolor stop 3 — M power red */
+  --color-electric-blue: #0653b6;  /* M xDrive electric accent (colder/digital) */
+
+  /* --- Surface --- */
+  --color-canvas: #000000;         /* default page floor — true black */
+  --color-surface-soft: #0d0d0d;   /* spec cells, footer-adjacent strips */
+  --color-surface-card: #1a1a1a;   /* cards, secondary buttons, icon buttons */
+  --color-surface-elevated: #262626; /* nested cards inside dark bands */
+  --color-carbon-gray: #2b2b2b;    /* carbon-fiber technical-spec surface */
+
+  /* --- Hairlines & Borders --- */
+  --color-hairline: #3c3c3c;         /* 1px divider tone on dark */
+  --color-hairline-strong: #262626;  /* border == one-step elevation */
+
+  /* --- Text --- */
+  --color-on-dark: #ffffff;    /* headlines + primary text */
+  --color-body: #bbbbbb;       /* default running text (cooler than white) */
+  --color-body-strong: #e6e6e6;/* emphasized body / lead paragraph */
+  --color-muted: #7e7e7e;      /* footer links, breadcrumbs, captions */
+
+  /* --- Semantic (used sparingly) --- */
+  --color-warning: #f4b400;    /* technical-warning callouts */
+  --color-success: #0fa336;    /* order-confirmation states */
+
+  /* --- M tricolor as a ready-to-use gradient (stripe divider only) --- */
+  --m-tricolor: linear-gradient(90deg,
+      var(--color-m-blue-light) 0%,
+      var(--color-m-blue-light) 33.33%,
+      var(--color-m-blue-dark) 33.33%,
+      var(--color-m-blue-dark) 66.66%,
+      var(--color-m-red) 66.66%,
+      var(--color-m-red) 100%);
+}

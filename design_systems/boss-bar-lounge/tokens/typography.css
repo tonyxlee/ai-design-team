@@ -1,0 +1,46 @@
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────────
+   Three voices:
+   • Display (Cormorant Garamond) — section titles, hero, prices.
+     Italic 300 = the "gold emphasis" treatment inside headings.
+   • Body (DM Sans) — paragraphs, UI, captions. Base 15.5px / 1.7.
+   • Brand (Michroma) — wordmark, eyebrows, nav. Wide tracking, ALL CAPS.
+   Eyebrows/labels run uppercase with heavy letter-spacing (.2em–.35em).
+   ──────────────────────────────────────────────────────────────────── */
+:root {
+  --bbl-font-display: 'Cormorant Garamond', Georgia, serif;
+  --bbl-font-body:    'DM Sans', system-ui, sans-serif;
+  --bbl-font-brand:   'Michroma', 'DM Sans', sans-serif;
+
+  /* Fluid display sizes (clamp: mobile → desktop) */
+  --bbl-text-hero:  clamp(36px, 7vw, 90px);   /* hero title       */
+  --bbl-text-h1:    clamp(30px, 5vw, 60px);   /* page title       */
+  --bbl-text-h2:    clamp(28px, 4vw, 52px);   /* section title    */
+  --bbl-text-h3:    22px;
+  --bbl-text-stat:  52px;                      /* big numerals     */
+
+  /* Body scale */
+  --bbl-text-lead:  16px;   /* section lead / intro */
+  --bbl-text-body:  15.5px; /* default body         */
+  --bbl-text-sm:    13.5px;
+  --bbl-text-xs:    12px;
+  --bbl-text-eyebrow: 11px; /* uppercase eyebrows   */
+
+  /* Line heights */
+  --bbl-leading-tight: 1.1;
+  --bbl-leading-snug:  1.3;
+  --bbl-leading-body:  1.7;
+  --bbl-leading-loose: 1.85;
+
+  /* Tracking */
+  --bbl-tracking-tight:  -0.01em;
+  --bbl-tracking-eyebrow: 0.3em;
+  --bbl-tracking-label:   0.2em;
+  --bbl-tracking-brand:   0.18em;
+
+  /* Weights */
+  --bbl-weight-light:   300;
+  --bbl-weight-regular: 400;
+  --bbl-weight-medium:  500;
+  --bbl-weight-semibold:600;
+  --bbl-weight-bold:    700;
+}

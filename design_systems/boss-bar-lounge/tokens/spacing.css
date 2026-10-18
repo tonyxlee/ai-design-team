@@ -1,0 +1,39 @@
+/* ── SPACING, RADIUS & LAYOUT ───────────────────────────────────────
+   The defining structural choice: SHARP CORNERS. Radius is 0 almost
+   everywhere; the brand reads as cut glass, not soft cards. Section
+   padding is generous (80px desktop). Grids use a 2px gap over a
+   hairline background to draw their own dividing lines.
+   ──────────────────────────────────────────────────────────────────── */
+:root {
+  /* Spacing scale (4px base) */
+  --bbl-space-1:  4px;
+  --bbl-space-2:  8px;
+  --bbl-space-3:  12px;
+  --bbl-space-4:  16px;
+  --bbl-space-5:  24px;
+  --bbl-space-6:  32px;
+  --bbl-space-7:  48px;
+  --bbl-space-8:  64px;
+  --bbl-space-9:  80px;
+
+  /* Section rhythm */
+  --bbl-section-pad-y:  80px;
+  --bbl-section-pad-x:  52px;
+  --bbl-section-pad-mobile: 60px 20px;
+
+  /* The signature 2px grid gutter (draws hairlines between cards) */
+  --bbl-grid-gap: 2px;
+
+  /* Radius — sharp by default */
+  --bbl-radius:    0px;
+  --bbl-radius-sm: 0px;
+  --bbl-radius-pill: 999px;  /* only for the rare flag/lang pill */
+
+  /* Borders */
+  --bbl-border-width: 1px;
+  --bbl-border-width-strong: 1.5px;
+
+  /* Content widths */
+  --bbl-measure: 640px;     /* readable lead text */
+  --bbl-container: 1280px;
+}

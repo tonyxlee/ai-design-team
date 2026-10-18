@@ -1,0 +1,45 @@
+/* ════════════════════════════════════════════════════════════════
+   motion-scroll-reveal — 사내 저작 표준 모션 모듈 (디자인시스템 중립)
+   스크롤 리빌 + 스태거 + 가벼운 패럴랙스. GSAP 등 외부 라이브러리 불필요.
+   original.js와 쌍으로 사용. 토큰(--reveal-*)만 브랜드별로 재정의하면 됨.
+   boss-bar-lounge: --reveal-ease를 var(--bbl-ease)로, 거리 28px(bbl-fade-up과 동일).
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  --reveal-distance: 28px;
+  --reveal-duration: 0.8s;
+  --reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --reveal-stagger: 90ms;
+}
+
+/* 초기 상태 — JS가 .is-inview를 붙이면 등장 */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: calc(var(--reveal-index, 0) * var(--reveal-stagger));
+  will-change: opacity, transform;
+}
+[data-reveal="left"]  { transform: translateX(calc(var(--reveal-distance) * -1)); }
+[data-reveal="right"] { transform: translateX(var(--reveal-distance)); }
+[data-reveal="scale"] { transform: scale(0.96); }
+[data-reveal].is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+/* 패럴랙스 레이어 — JS가 --parallax-y를 갱신 */
+[data-parallax] {
+  transform: translateY(var(--parallax-y, 0px));
+  will-change: transform;
+}
+
+/* JS 미실행(no-JS)이어도 콘텐츠는 보여야 한다 */
+html.no-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  [data-parallax] { transform: none; }
+}

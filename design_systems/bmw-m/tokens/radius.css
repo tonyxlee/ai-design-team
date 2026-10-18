@@ -1,0 +1,22 @@
+/* ============================================================
+   RADIUS & ELEVATION — BMW M
+   Radius is "almost always 0, sometimes circular." Nothing between.
+   The system uses NO drop shadows — depth comes from photography
+   and the black-canvas ↔ surface-card contrast.
+   ============================================================ */
+
+:root {
+  --radius-none: 0px;    /* buttons, cards, photo containers, inputs — dominant */
+  --radius-xs: 2px;      /* almost none — legal CTAs */
+  --radius-sm: 4px;      /* small toggle pills on configurator */
+  --radius-md: 6px;      /* rare — small dropdown items */
+  --radius-full: 9999px; /* circular icon buttons, carousel arrows, launcher */
+
+  /* Elevation is intentionally flat. These exist so consumers reference
+     a token instead of inventing a shadow. Default = none. */
+  --elevation-flat: none;
+  --elevation-hairline: 0 0 0 1px var(--color-hairline); /* soft 1px outline */
+
+  /* The M stripe divider height is fixed at every breakpoint. */
+  --m-stripe-height: 4px;
+}

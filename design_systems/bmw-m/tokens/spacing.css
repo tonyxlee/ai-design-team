@@ -1,0 +1,18 @@
+/* ============================================================
+   SPACING — BMW M   (base unit 4px)
+   ============================================================ */
+
+:root {
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;   /* card internal padding, grid gutters */
+  --space-xl: 40px;   /* spec-cell table padding */
+  --space-xxl: 64px;  /* hero photo band internal padding, footer padding */
+  --space-section: 96px; /* between major editorial bands */
+
+  /* Layout */
+  --container-max: 1440px; /* centered marketing max width */
+  --nav-height: 64px;
+}

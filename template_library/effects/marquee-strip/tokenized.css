@@ -1,0 +1,38 @@
+/* ════════════════════════════════════════════════════════════════
+   marquee-strip — boss-bar-lounge 토큰 치환본 (자체 저작)
+   syahril 듀얼 마퀴 패턴의 BBL 버전: Michroma 와이드 트래킹 골드 스트립.
+   섹션 경계·히어로 하단의 "속도감 있는 구분선"로 사용.
+   마크업: .bbl-marquee > .bbl-marquee-track(동일 내용 2벌 연속 — 무한루프 필수)
+   ════════════════════════════════════════════════════════════════ */
+
+.bbl-marquee {
+  overflow: hidden;
+  display: flex;
+  border-top: 1px solid var(--bbl-border);
+  border-bottom: 1px solid var(--bbl-border);
+  padding: 14px 0;
+  user-select: none;
+}
+.bbl-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 48px;
+  padding-right: 48px;
+  align-items: center;
+  font-family: var(--bbl-font-brand);
+  font-size: var(--bbl-text-eyebrow);
+  letter-spacing: var(--bbl-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--bbl-tan);
+  white-space: nowrap;
+  animation: bbl-marquee 36s linear infinite;
+}
+.bbl-marquee--reverse .bbl-marquee-track { animation-name: bbl-marquee-reverse; }
+.bbl-marquee-track .dot { color: var(--bbl-gold); opacity: .6; }
+
+@keyframes bbl-marquee         { to { transform: translateX(-100%); } }
+@keyframes bbl-marquee-reverse { from { transform: translateX(-100%); } to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bbl-marquee-track { animation: none; }
+}
