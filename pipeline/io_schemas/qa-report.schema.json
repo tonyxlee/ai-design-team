@@ -10,12 +10,12 @@
     "stage": {
       "type": "string",
       "description": "검수 대상 단계",
-      "enum": ["brief", "collection", "plan", "production"]
+      "enum": ["brief", "collection", "plan", "assets", "production"]
     },
     "gate": {
       "type": "string",
-      "enum": ["understanding", "quality"],
-      "description": "understanding=착수 전 이해 게이트, quality=산출 후 품질 게이트"
+      "enum": ["understanding", "stage_output", "final"],
+      "description": "v2 3단 QA — understanding=QA-U(착수 전 지시 이해), stage_output=QA-S(단계 산출), final=QA-F(최종 결과물)"
     },
     "verdict": {
       "type": "string",
@@ -38,6 +38,30 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "FAIL/CONDITIONAL 시 구체 수정 지시(담당 팀이 그대로 실행 가능해야 함)"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["blocker", "major", "minor"],
+      "description": "최고 심각도(v2). blocker=재작업, major=수정 후 diff 재검, minor=기록만"
+    },
+    "checked_scope": {
+      "type": "string",
+      "enum": ["full", "diff"],
+      "description": "v2 — 재검수는 diff(수정 부분만)가 원칙. 전체 재검은 blocker 재발 시만."
+    },
+    "model_used": {
+      "type": "string",
+      "enum": ["machine", "haiku", "sonnet", "opus"],
+      "description": "v2 모델 차등 — 기계적 대조=haiku, 내용 검수=sonnet, 최종 판정=opus"
+    },
+    "credits": {
+      "type": "object",
+      "description": "이 검수에 들어간 비용(v2) — orchestrator가 프로젝트 단위 집계",
+      "properties": {
+        "llm_calls": { "type": "integer", "minimum": 0 },
+        "escalated_to_opus": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
     },
     "reviewer_notes": { "type": "string" }
   }

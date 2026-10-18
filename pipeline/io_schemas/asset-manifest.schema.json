@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "asset-manifest.schema.json",
+  "title": "Asset Manifest",
+  "description": "asset-artist → producer/qa. 생산·수급한 에셋 목록 + 라우트·비용 기록 (v2 신설).",
+  "type": "object",
+  "required": ["project_id", "assets"],
+  "properties": {
+    "project_id": { "type": "string" },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "route", "file", "license"],
+        "properties": {
+          "id": { "type": "string", "description": "plan.json asset_specs의 id와 일치" },
+          "route": {
+            "type": "string",
+            "description": "실제 사용한 경로 — reuse | css-svg-authoring | tools_registry source id"
+          },
+          "file": { "type": "string", "description": "assets/<project>/ 기준 경로" },
+          "prompt": { "type": "string", "description": "생성형 경로일 때 사용 프롬프트(재현·캐시용)" },
+          "cache_key": { "type": "string", "description": "프롬프트/소스 해시 — 동일 키 재생성 금지" },
+          "source_url": { "type": "string", "description": "수급형일 때 원본 URL" },
+          "license": { "type": "string", "description": "free | subscription-output | credit-output | reference-only" },
+          "cost": {
+            "type": "object",
+            "properties": {
+              "cost_class": { "type": "string", "enum": ["free", "subscription", "credit"] },
+              "estimated": { "type": "string", "description": "견적(예: Firefly 1크레딧)" },
+              "approved_by_orchestrator": { "type": "boolean", "description": "유료 경로는 true 필수" }
+            }
+          },
+          "spec_met": { "type": "boolean", "description": "asset_specs의 size/style/must_have 충족 자가평가" }
+        }
+      }
+    },
+    "quote": {
+      "type": "object",
+      "description": "유료 경로 진입 전 오케스트레이터에 올리는 견적 블록",
+      "properties": {
+        "items": { "type": "integer" },
+        "summary": { "type": "string" },
+        "approved": { "type": "boolean" }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

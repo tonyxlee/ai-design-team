@@ -43,6 +43,11 @@
             "items": { "type": "string" },
             "description": "사용할 디자인시스템 컴포넌트 또는 패턴명"
           },
+          "component_source": {
+            "type": "string",
+            "enum": ["local-ds", "template-library", "21st-dev", "claude-design", "authored"],
+            "description": "컴포넌트 수급처(v2). authored=producer가 직접 저작"
+          },
           "tokens": {
             "type": "array",
             "items": { "type": "string" },
@@ -78,6 +83,25 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "반드시 지킬 브랜드 규칙(예: 0px radius, 대문자 display, 골드 글로우만)"
+    },
+    "asset_specs": {
+      "type": "array",
+      "description": "asset-artist가 생산할 에셋 명세(v2). 섹션의 assets가 이 id를 참조.",
+      "items": {
+        "type": "object",
+        "required": ["id", "purpose", "size"],
+        "properties": {
+          "id": { "type": "string" },
+          "purpose": { "type": "string", "description": "어느 섹션의 무슨 용도인지" },
+          "size": { "type": "string", "description": "예: 1920x1080, 512x512 투명 PNG" },
+          "style": { "type": "string", "description": "스타일 지시(브랜드 톤 포함)" },
+          "recommended_route": {
+            "type": "string",
+            "description": "tools_registry source id 또는 'css-svg-authoring'. 비워두면 asset-artist가 fallback_chains.image-generation 순서로 라우팅"
+          },
+          "must_have": { "type": "array", "items": { "type": "string" } }
+        }
+      }
     }
   }
 }

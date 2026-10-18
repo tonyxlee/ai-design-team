@@ -13,7 +13,8 @@ plan.json을 읽고 총 섹션 수·대상 design_system·산출 파일 목록�
 
 ## 작업
 1. **저작** — 각 섹션을 plan의 스펙대로 HTML/CSS로 만든다. 필요한 토큰값을 산출 HTML의 `:root{ --x: … }`에 **인라인**한다(외부 의존 최소화). 브랜드 규칙(대문자/세리프/0px/글로우 등)을 지킨다.
-2. **자산** — plan이 지정한 이미지/영상을 배치(없으면 정직한 플레이스홀더 + 필요 자산 목록). 실제 컴포넌트 마크업이 필요하면 design MCP로 해당 프로젝트의 `.prompt.md`/`.jsx`를 온디맨드로 참고.
+2. **컴포넌트 이식** — 섹션의 `component_source`가 template-library/21st-dev면 해당 원 코드를 가져와 **토큰화 변환**(React/Tailwind → 순수 HTML/CSS, 색·폰트·간격을 브랜드 토큰으로 치환)해 이식한다. 원 소스의 색/폰트 잔재를 남기지 않는다. 변환 내역은 `production.json`의 `imported_components[]`에 기록.
+3. **자산** — `asset-manifest.json`의 에셋을 plan의 섹션 지정대로 배치하고 `assets_used[]`에 기록(없으면 정직한 플레이스홀더 + 필요 자산 목록). 실제 컴포넌트 마크업이 필요하면 design MCP로 해당 프로젝트의 `.prompt.md`/`.jsx`를 온디맨드로 참고.
 3. **타입별**
    - A/B/C 웹: `pipeline/preview_server.py <folder>`로 서빙 → 브라우저 미리보기(콘솔·반응형) 확인.
    - D 그래픽: 고정 캔버스 HTML → `pipeline/screenshot.py`로 뷰포트 PNG 내보내기.

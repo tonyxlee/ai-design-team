@@ -43,6 +43,35 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "레퍼런스 종합에서 도출한 기획 인사이트"
+    },
+    "template_refs": {
+      "type": "array",
+      "description": "template_library 캐시 히트 — planner가 1차 참조할 학습 템플릿/효과(v2)",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind"],
+        "properties": {
+          "id": { "type": "string", "description": "template_library/index.json의 entry id" },
+          "kind": { "type": "string", "enum": ["component", "effect", "design-md", "mockup"] },
+          "why": { "type": "string", "description": "이 프로젝트에 맞는 이유" },
+          "license": { "type": "string" }
+        }
+      }
+    },
+    "source_runs": {
+      "type": "array",
+      "description": "소스별 수급 기록(v2) — 캐시 히트 여부와 비용 클래스를 남겨 재수급을 방지",
+      "items": {
+        "type": "object",
+        "required": ["source", "cache_hit"],
+        "properties": {
+          "source": { "type": "string", "description": "tools_registry의 source id" },
+          "query": { "type": "string" },
+          "cache_hit": { "type": "boolean" },
+          "cost_class": { "type": "string", "enum": ["free", "subscription", "credit"] },
+          "items_added": { "type": "integer", "minimum": 0, "description": "template_library에 신규 적재한 수" }
+        }
+      }
     }
   }
 }

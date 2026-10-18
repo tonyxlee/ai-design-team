@@ -3,11 +3,24 @@
 경로, 뷰포트 프리셋, 그리고 adherence 검사가 쓰는 브랜드 규칙(팔레트·라디우스·그림자)을
 한곳에 모은다. 새 브랜드를 추가하려면 DESIGN_SYSTEMS에 항목을 넣는다.
 """
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DESIGN_SYSTEMS_DIR = ROOT / "design_systems"
 WORKSPACE_DIR = Path(__file__).resolve().parent / "workspace"
+TEMPLATE_LIBRARY_DIR = ROOT / "template_library"
+TOOLS_REGISTRY_PATH = Path(__file__).resolve().parent / "tools_registry.json"
+
+
+def load_tools_registry() -> dict:
+    """도구·소스 레지스트리(설계문서-v2 §3)를 읽는다. 에이전트와 스크립트의 단일 정본."""
+    return json.loads(TOOLS_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+def fallback_chain(capability: str) -> list[str]:
+    """해당 capability의 비용 오름차순 수급 체인. 미등록 capability면 빈 리스트."""
+    return load_tools_registry().get("fallback_chains", {}).get(capability, [])
 
 VIEWPORTS = {
     "desktop": (1440, 900),

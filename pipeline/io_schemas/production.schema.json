@@ -49,6 +49,44 @@
         "responsive_ok": { "type": "boolean" }
       }
     },
+    "assets_used": {
+      "type": "array",
+      "description": "삽입한 에셋(v2) — asset-manifest.json의 asset id 참조",
+      "items": { "type": "string" }
+    },
+    "imported_components": {
+      "type": "array",
+      "description": "외부/라이브러리에서 이식한 컴포넌트(v2)",
+      "items": {
+        "type": "object",
+        "required": ["source", "id"],
+        "properties": {
+          "source": { "type": "string", "description": "tools_registry source id 또는 template-library" },
+          "id": { "type": "string", "description": "컴포넌트/entry id" },
+          "conversion": { "type": "string", "description": "토큰화 변환 내역(색/폰트/간격 치환 요약)" },
+          "license": { "type": "string" }
+        }
+      }
+    },
+    "credits": {
+      "type": "object",
+      "description": "이 단계의 비용 기록(v2)",
+      "properties": {
+        "external_calls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "count": { "type": "integer" },
+              "cost_class": { "type": "string", "enum": ["free", "subscription", "credit"] },
+              "approved_by_orchestrator": { "type": "boolean" }
+            }
+          }
+        },
+        "notes": { "type": "string" }
+      }
+    },
     "notes": { "type": "string" }
   }
 }

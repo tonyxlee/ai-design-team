@@ -1,0 +1,139 @@
+{
+  "$schema_note": "AI 디자인팀 도구·소스 레지스트리 (설계문서-v2 §3). 에이전트는 수급/제작 경로를 하드코딩하지 않고 여기서 조회한다.",
+  "version": 2,
+  "cost_classes": ["free", "subscription", "credit"],
+  "routing_principle": "비용 오름차순 — free 경로에서 해결 시도 후 subscription/credit 경로로 상승. credit/subscription 경로는 오케스트레이터 사전 승인 필수.",
+  "sources": [
+    {
+      "id": "template-library",
+      "kind": "local",
+      "capabilities": ["components", "effects", "design-md", "mockups"],
+      "cost_class": "free",
+      "auth_required": false,
+      "access": "template_library/index.json 색인 조회 후 파일 읽기",
+      "preferred_for": ["모든 수급의 1차 캐시 조회"],
+      "notes": "캐시 미스일 때만 외부 소스로 진행한다."
+    },
+    {
+      "id": "local-ds",
+      "kind": "local",
+      "capabilities": ["design-tokens", "components", "adherence-rules"],
+      "cost_class": "free",
+      "auth_required": false,
+      "access": "design_systems/<id>/ 파일 읽기 (styles.css · tokens/ · _ds_bundle.js)",
+      "preferred_for": ["브랜드 토큰·컴포넌트의 정본"]
+    },
+    {
+      "id": "claude-design",
+      "kind": "mcp",
+      "tool": "DesignSync",
+      "capabilities": ["design-system-source", "past-work", "ui-kits"],
+      "cost_class": "free",
+      "auth_required": true,
+      "access": "list_projects → list_files → get_file (읽기 전용). 업로드/수정 금지.",
+      "preferred_for": ["보스 계정 디자인시스템 원본·과거 작업물 조회"],
+      "notes": "첫 호출 시 권한 프롬프트 가능. 쓰기 메서드는 /design-sync 스킬로 사용자가 직접 시작할 때만."
+    },
+    {
+      "id": "21st-dev",
+      "kind": "web",
+      "capabilities": ["react-components", "templates", "shadcn-themes", "shaders", "gradients"],
+      "cost_class": "free",
+      "cost_notes": "탐색 무료, 복사 일 2회 무료. 멤버십=무제한. 21st AI는 별도 크레딧.",
+      "auth_required": false,
+      "access": "페이지 URL 뒤 .md 추가(마크다운 버전) · llms.txt · REST API(OpenAPI) 우선. 브라우저는 최후.",
+      "preferred_for": ["섹션 단위 컴포넌트(히어로·가격표·후기 등)", "셰이더·그라데이션"],
+      "notes": "수급 코드는 React/Tailwind — producer가 프로젝트 토큰으로 변환(토큰화 변환본) 후 사용."
+    },
+    {
+      "id": "getdesign-md",
+      "kind": "web",
+      "capabilities": ["design-md", "starter-kits", "backgrounds", "video-templates"],
+      "cost_class": "free",
+      "cost_notes": "카탈로그 무료 열람, 일부 Catalog Pass 유료.",
+      "auth_required": false,
+      "access": "WebFetch로 카탈로그·상세 페이지 수집 → design-md/ 캐싱",
+      "preferred_for": ["실사이트 550+의 디자인 언어(색·타이포·간격) 참조 — planner 전용"]
+    },
+    {
+      "id": "syahril-portfolio",
+      "kind": "browser",
+      "url": "https://www.syahrilarfianalmazril.my.id/projects",
+      "capabilities": ["interaction-effects", "reference-gallery"],
+      "cost_class": "free",
+      "auth_required": false,
+      "access": "JS 렌더링 필요 — 빌트인 브라우저로 열어 효과를 분석·기록(코드 관찰은 DevTools)",
+      "preferred_for": ["인터랙션·효과 레퍼런스"]
+    },
+    {
+      "id": "figma",
+      "kind": "mcp",
+      "tool": "mcp__Figma__* / mcp__7c6fb46b__*",
+      "capabilities": ["generate-design", "design-context", "image-generation", "code-connect"],
+      "cost_class": "subscription",
+      "auth_required": true,
+      "access": "공식 Figma MCP",
+      "preferred_for": ["디자인↔코드 왕복", "피그마 파일로 납품해야 할 때"]
+    },
+    {
+      "id": "adobe-express",
+      "kind": "mcp",
+      "tool": "mcp__d1f21666__*",
+      "capabilities": ["template-search", "html-to-express", "firefly-image", "fonts", "image-edit", "pdf"],
+      "cost_class": "credit",
+      "auth_required": true,
+      "access": "adobe_mandatory_init 선행 → search_design / export_html_to_express / image_* 등",
+      "preferred_for": ["Express 템플릿 기반 작업", "Firefly 이미지 생성", "폰트 추천"],
+      "notes": "현재 미인증 — claude.ai 커넥터 인증 후 활성."
+    },
+    {
+      "id": "canva",
+      "kind": "mcp",
+      "tool": "mcp__559073d1__*",
+      "capabilities": ["brand-templates", "generate-design", "generate-image", "export", "resize"],
+      "cost_class": "credit",
+      "auth_required": true,
+      "access": "create-design / generate-design / generate-image / export-design",
+      "preferred_for": ["브랜드 템플릿 양산", "소셜 사이즈 리사이즈"],
+      "notes": "현재 미인증 — claude.ai 커넥터 인증 후 활성."
+    },
+    {
+      "id": "higgsfield",
+      "kind": "mcp",
+      "tool": "mcp__d4cfdc94__*",
+      "capabilities": ["generate-image", "generate-video", "presets", "product-shot", "upscale", "remove-background"],
+      "cost_class": "credit",
+      "auth_required": true,
+      "access": "generate_image / generate_video / get_presets(marketing_studio)",
+      "preferred_for": ["제품샷·모션·광고 소재 생성"]
+    },
+    {
+      "id": "chatgpt-image",
+      "kind": "browser",
+      "url": "https://chatgpt.com",
+      "capabilities": ["image-generation"],
+      "cost_class": "subscription",
+      "auth_required": true,
+      "access": "빌트인 브라우저/Claude in Chrome으로 보스 로그인 세션에서 이미지 생성 → 다운로드는 보스 승인 하에",
+      "preferred_for": ["GPT 특유의 일러스트/합성 스타일이 필요할 때"],
+      "notes": "로그인은 보스가 직접. CAPTCHA/차단 시 중단·보고(우회 금지). 생성물 다운로드는 건별 확인."
+    },
+    {
+      "id": "morflax",
+      "kind": "browser",
+      "url": "https://studio.morflax.com/toolset",
+      "capabilities": ["3d-mockups", "device-mockups", "clothing-mockups", "vector-to-3d", "dither-glitch-effects", "icon-3d"],
+      "cost_class": "subscription",
+      "cost_notes": "일부 템플릿 Pro 전용.",
+      "auth_required": false,
+      "access": "웹앱 조작(브라우저) → PNG/영상 export",
+      "preferred_for": ["기기·의류·브랜딩 목업", "디더/ASCII/글리치 효과", "SVG→3D"]
+    }
+  ],
+  "fallback_chains": {
+    "image-generation": ["template-library", "css-svg-authoring", "21st-dev", "adobe-express", "canva", "higgsfield", "chatgpt-image"],
+    "components": ["template-library", "local-ds", "21st-dev", "claude-design"],
+    "mockups": ["template-library", "morflax", "higgsfield"],
+    "design-language-reference": ["local-ds", "getdesign-md", "claude-design", "syahril-portfolio"]
+  }
+}
